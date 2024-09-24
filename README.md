@@ -1,24 +1,31 @@
-# feature_flags
-
-[![Package Version](https://img.shields.io/hexpm/v/feature_flags)](https://hex.pm/packages/feature_flags)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/feature_flags/)
+# Feature Flags
 
 ```sh
-gleam add feature_flags@1
+gleam add feature_flags
 ```
+
 ```gleam
 import feature_flags
 
 pub fn main() {
-  // TODO: An example of the project in use
+  // Start the app
+  let ff = feature_flags.start()
+
+  // Check if a feature flag is enabled
+  feature_flags.is_enabled(ff, "feature") // false
+
+  // Enable a flag
+  feature_flags.enable(ff, "feature")
+  feature_flags.is_enabled(ff, "feature") // true
+
+  // Disable a flag
+  feature_flags.disable(ff, "feature")
+  feature_flags.is_enabled(ff, "feature") // false
 }
 ```
-
-Further documentation can be found at <https://hexdocs.pm/feature_flags>.
 
 ## Development
 
 ```sh
-gleam run   # Run the project
 gleam test  # Run the tests
 ```
